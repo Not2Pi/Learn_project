@@ -699,4 +699,15 @@ def countdown(n):
     for i in range(n, -1, -1):
         yield i
 
+def modify_list(lst):
+    for i in range(len(lst)):
+        lst[i]*=2                                             ### меняем лист
 
+import time
+def timer(funk):
+    def wrapper():
+        start = time.time()
+        funk()                                               ### ВРЕМЯ РАБОТЫ ФУНКЦИИ
+        end  = time.time()
+        print(f"Время выполнения: {end - start:.2f} сек.")
+    return wrapper
