@@ -669,7 +669,7 @@ from datetime import datetime, date, time, timedelta
 
 
 def date_difference(date1, date2):
-    date1 = datetime.strptime(date1, "%d.%m.%Y")  ###  разница даты
+    date1 = datetime.strptime(date1, "%d.%m.%Y")              ###  разница даты
     date2 = datetime.strptime(date2, "%d.%m.%Y")
     return abs((date2 - date1).days)
 
@@ -677,7 +677,7 @@ def date_difference(date1, date2):
 def days_until_new_year():
     date_now = datetime.now()
     next_year = date_now.year + 1
-    new_year = datetime(next_year, 1, 1)  ###  До нового года дней
+    new_year = datetime(next_year, 1, 1)                   ###  До нового года дней
     res = (new_year - date_now).days
     return res
 
@@ -685,19 +685,17 @@ def days_until_new_year():
 def uppercase_decorator(funk):
     def upper():
         res = funk()
-        return res.upper()  ###   Декоратор
+        return res.upper()                             ###   Декоратор строка в заглавные
 
     return upper
-
-
 @uppercase_decorator
 def get_greeting():
     return "hello world"
 
 
-def countdown(n):
+def countdown_num(n):
     for i in range(n, -1, -1):
-        yield i
+        yield i                                             ###     ЧИСЛА В ОБРАТНОМ ПОРЯДКЕ ЧЕРЕЗ ГЕНЕРАТОР
 
 def modify_list(lst):
     for i in range(len(lst)):
@@ -711,3 +709,11 @@ def timer(funk):
         end  = time.time()
         print(f"Время выполнения: {end - start:.2f} сек.")
     return wrapper
+
+def repeat(n):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for _ in range(n):
+                func(*args, **kwargs)                ###  ДЕКОРАТОР С ПАРАМЕТРАМИ
+        return wrapper
+    return decorator
